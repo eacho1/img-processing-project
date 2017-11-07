@@ -79,8 +79,9 @@ def main():
     probs = model.predict(img_data, verbose=False)[0, :, :, :]
     label_mask, segmentation = util.get_label_image(probs, img_h, img_w) 
     segmentation.save(output_file)
-    pyplot.imshow(label_mask);
+    pyplot.imshow(label_mask)
     pyplot.title("Label Mask")
+    pyplot.figure();
     print label_mask
     image_array_rgb = np.array(Image.open(input_file))
     smallBlur = np.ones((21,21), dtype="float")*(1.0/(21*21))
@@ -94,8 +95,9 @@ def main():
     b    = b_original[1350:1650,2300:2600,0].copy().astype(np.uint8)
     a    = np.ones_like(r) * 255
     rgba = np.dstack((r,g,b,a)).copy()
-    pyplot.imshow(rgba_original);
-    pyplot.title("Original");
+    pyplot.imshow(rgba_original)
+    pyplot.title("Original")
+    pyplot.figure()
 
     blur_kernel_width = np.int32(16)
     blur_kernel_half_width = np.int32(8)
@@ -109,7 +111,8 @@ def main():
     blur_kernel = (normalization_constant * blur_kernel_not_normalized).astype(np.float32)
 
     pyplot.imshow(blur_kernel, cmap="gray", interpolation="nearest")
-    pyplot.title("blur_kernel");
+    pyplot.title("blur_kernel")
+    pyplot.figure()
 
     convolution_filter = blur_kernel
 
@@ -123,7 +126,7 @@ def main():
     #print label_mask
     list_mask = zip(np.where(label_mask<1)[1], np.where(label_mask<1)[0])
     #pyplot.subplot(122),pyplot.imshow(label_mask, cmap="gray", interpolation="nearest")
-    pyplot.title("label_mask");
+    #pyplot.title("label_mask");
     
     r_convolved = convolve(r_original, list_mask, convolution_filter)
     g_convolved = convolve(g_original, list_mask, convolution_filter)
@@ -133,8 +136,7 @@ def main():
     
     pyplot.imshow(rgba_convolved)
     pyplot.title("Convolved")
-    pyplot.imshow(rgba_blurred)
-    pyplot.title("Blurred")
+    pyplot.figure()
     pyplot.show()
 
 if __name__ == "__main__":
