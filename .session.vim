@@ -8,11 +8,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 .git/COMMIT_EDITMSG
+badd +0 .gitignore
 argglobal
 silent! argdel *
-$argadd .git/COMMIT_EDITMSG
-edit .git/COMMIT_EDITMSG
+$argadd .gitignore
+edit .gitignore
 set splitbelow splitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
