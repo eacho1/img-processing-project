@@ -94,6 +94,10 @@ def main():
         print label_mask
         image_array_rgb = np.array(Image.open(input_file))
         smallBlur = np.ones((21,21), dtype="float")*(1.0/(21*21))
+        size = 15
+        kernel_motion_blur = np.zeros((size, size))
+        kernel_motion_blur[int((size-1)/2), :] = np.ones(size)
+        kernel_motion_blur = kernel_motion_blur / size
         r_original,g_original,b_original = np.split(image_array_rgb, 3, axis=2)
         a_original = np.ones_like(r_original)*255
 
@@ -118,7 +122,7 @@ def main():
         blur_kernel_not_normalized = np.exp((-(x**2 + y**2))/(2 * blur_sigma**2))
         normalization_constant = np.float32(1) / np.sum(blur_kernel_not_normalized)
         #blur_kernel = (normalization_constant * blur_kernel_not_normalized).astype(np.float32)
-        blur_kernel=smallBlur
+        blur_kernel=kernel_motion_blur
 
         pyplot.imshow(blur_kernel, cmap="gray", interpolation="nearest")
         pyplot.title("blur_kernel")
