@@ -3,16 +3,16 @@ if &cp | set nocp | endif
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/Documents/git/mte204
+cd ~/Documents/git/mte204/crfasrnn_keras/cpp
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 .git/COMMIT_EDITMSG
+badd +0 compile.sh
 argglobal
 silent! argdel *
-$argadd .git/COMMIT_EDITMSG
-edit .git/COMMIT_EDITMSG
+$argadd compile.sh
+edit compile.sh
 set splitbelow splitright
 wincmd t
 set winminheight=1 winheight=1 winminwidth=1 winwidth=1
@@ -26,12 +26,12 @@ setlocal fml=1
 setlocal fdn=20
 setlocal fen
 silent! normal! zE
-let s:l = 1 - ((0 * winheight(0) + 11) / 22)
+let s:l = 10 - ((9 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-1
-normal! 0
+10
+normal! 0163|
 tabnext 1
 if exists('s:wipebuf')
   silent exe 'bwipe ' . s:wipebuf
