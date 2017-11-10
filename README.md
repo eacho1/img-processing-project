@@ -1,4 +1,7 @@
 # 204 Numerical Methods Project
+This is an application built for the MTE 204 Numerical Methods course project. For this project each group was to apply various numerical methods to solve a practical engineering problem. The problem our group chose to solve was simulating mechanical depth of field using only software. The current version of this project was developed by:
+Emma Xie, Emily Cho, and Kaitlyn Mccluskie
+
 ## Installation
 First, clone project
 ```
