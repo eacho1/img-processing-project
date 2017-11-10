@@ -1,0 +1,7 @@
+numpy
+scipy
+matplotlib
+argparse
+glob
+scikit-image
+Pillow
